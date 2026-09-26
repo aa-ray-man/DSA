@@ -3,7 +3,6 @@ class Solution {
 
         int max = 0;
 
-        // Find maximum pile
         for (int pile : piles) {
             max = Math.max(max, pile);
         }
@@ -14,22 +13,19 @@ class Solution {
 
         while (l <= r) {
 
-            int k = l + (r - l) / 2;
+            int mid = l + (r - l) / 2;
 
             long hours = 0;
 
-            // Calculate hours needed at speed k
             for (int pile : piles) {
-                hours += (pile + k - 1) / k;
+                hours += (pile + mid - 1) / mid;
             }
 
             if (hours <= h) {
-                // k works, but try a smaller speed
-                ans = k;
-                r = k - 1;
+                ans = mid;
+                r = mid - 1;
             } else {
-                // k is too slow
-                l = k + 1;
+                l = mid + 1;
             }
         }
 
